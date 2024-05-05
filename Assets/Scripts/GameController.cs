@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI scoreText; 
 
     public GameObject gameOver;
-
+    public GameObject pause;
     public static GameController instance;
 
     // Start is called before the first frame update
@@ -20,6 +20,13 @@ public class GameController : MonoBehaviour
         instance = this;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            ShowPause(true);
+        }
+       
+    }
     public void UpdateScoreText()
     {
         scoreText.text = totalScore.ToString();
@@ -34,4 +41,12 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(lvlName);
     }
+
+    public void ShowPause(bool value)
+    {
+        pause.SetActive(value);
+        Time.timeScale=value?0:1;
+    }
+
+
 }

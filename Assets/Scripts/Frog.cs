@@ -40,25 +40,12 @@ public class Frog : MonoBehaviour
         speed *= -1f;
     }
   }
-  void OnCollisionEnter2D(Collision2D col)
+  void OnTriggerEnter2D(Collider2D col)
   {
     if(col.gameObject.tag == "Player")
     {
-        if(col.gameObject.tag == "Player")
-        {
-            float height = col.contacts[0].point.y - headPoint.position.y;
+       this.transform.gameObject.SetActive(false);
 
-            if(height > 0)
-            {
-                col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                speed = 0;
-                anim.SetTrigger("die");
-                boxCollider2D.enabled = false;
-                circleCollider2D.enabled = false;
-                rig.bodyType = RigidbodyType2D.Kinematic;
-                Destroy(gameObject, 0.5f);
-            }
-        }
     }
   }
 

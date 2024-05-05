@@ -9,11 +9,12 @@ public class NextLevelPoint : MonoBehaviour
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.tag == "Player")
+            if(collision.gameObject.tag == "Player" && !Banana.activeSelf)
             {
                 SceneManager.LoadScene(lvlName);
             }
           
         }
+    public GameObject Banana;
 
 }

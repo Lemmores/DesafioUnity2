@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rig;
     private Animator anim;
+    public GameController gameController;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,21 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
+        if (Input.GetKeyDown(KeyCode.T)&& gameController.totalScore >= 10){
+            gameController.totalScore -= 10;
+            gameController.UpdateScoreText();
+            if (toBanana){
+                LastPosition = transform.position;
+                transform.position = Banana.transform.position; 
+            }
+            else{
+                transform.position = LastPosition;
+            }
+            toBanana = !toBanana;
+        }
     }
+
+    public bool toBanana = true;
 
     void Move()
     {
@@ -96,4 +111,7 @@ public class Player : MonoBehaviour
         isJumping = true;
         }
     }
+
+    public GameObject Banana;
+    public Vector3 LastPosition;
 }
